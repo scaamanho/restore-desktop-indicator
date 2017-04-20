@@ -1,4 +1,4 @@
-![Restore Desktop Indicator Logo](logo.svg)
+![Restore Desktop Indicator Logo](/logo.svg)
 Format: ![Alt Text]
 
 # restore-desktop-indicator
