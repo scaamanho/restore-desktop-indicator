@@ -1,0 +1,125 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# copyright 2017 Santiago Caamaño <scaamanho@gmail.com>
+# hereby released under the GNU license.
+# use the PyGObject GObject introspection to use GTK+ 3
+# also see
+# http://readthedocs.org/docs/python-gtk-3-tutorial/en/latest/index.html
+# http://developer.gnome.org/gtk3/stable/ (API reference)
+
+from gi.repository import Gtk,GdkPixbuf, GLib
+try:
+    from gi.repository import AppIndicator3 as AppIndicator
+except:
+    from gi.repository import AppIndicator
+import os
+
+# TODO set in config values
+__author__ = 'Santiago Caamaño'
+__website__ = 'https://github.com/scaamanho/'
+
+restore_command = 'setsid unity && killall nautilus'
+app_name = 'Restore Desktop Indicator'
+app_version = '0.1'
+app_website = 'http://scaamanho.github.io/restore-desktop-indicator/'
+
+app_icon = os.path.abspath('logo.svg')
+
+
+class RestoreDesktopIndicator:
+    
+    def __init__(self):
+        self.about_dialog = None
+        # param1: identifier of this indicator
+        # param2: name of icon. this will be searched for in the standard them
+        # dirs
+        # finally, the category. We're monitoring CPUs, so HARDWARE.
+        self.ind = AppIndicator.Indicator.new(
+            "indicator-ssh",
+            app_icon,
+            AppIndicator.IndicatorCategory.APPLICATION_STATUS)
+
+        # need to set this for indicator to be shown
+        self.ind.set_status(AppIndicator.IndicatorStatus.ACTIVE)
+
+        # have to give indicator a menu
+        self.menu = Gtk.Menu()
+        item = Gtk.MenuItem()
+        item.set_label('Restore Desktop')
+        item.connect('activate', self.restore_desktop)
+        item.show()
+        self.menu.append(item)
+
+        item = Gtk.SeparatorMenuItem()
+        item.show()
+        self.menu.append(item)
+
+        item = Gtk.MenuItem()
+        item.set_label('About')
+        item.connect('activate', self.handler_about)
+        item.show()
+        self.menu.append(item)
+
+        item = Gtk.MenuItem()
+        item.set_label('Exit')
+        item.connect('activate', self.handler_exit)
+        item.show()
+        self.menu.append(item)
+
+        self.menu.show()
+        self.ind.set_menu(self.menu)
+
+    def restore_desktop(self, evt):
+        #Execute command
+        os.system(restore_command)
+
+    def handler_about(self, evt):
+        if self.about_dialog:
+            self.about_dialog.present()
+        else:
+            self.about_dialog = self.get_about_dialog()
+            self.about_dialog.run()
+            self.about_dialog.destroy()
+            self.about_dialog = None
+
+    def handler_website(self, evt):
+        webbrowser.open(app_website)
+
+    def handler_exit(self, evt):
+        Gtk.main_quit()
+
+    def get_about_dialog(self):
+        """Create and populate the about dialog."""
+        about_dialog = Gtk.AboutDialog()
+        about_dialog.set_name(app_name)
+        about_dialog.set_version(app_version)
+        about_dialog.set_copyright('Copyrignt (c) 2017\nSantiago Caamaño')
+        about_dialog.set_comments('Restore Unity Desktop')
+        about_dialog.set_license('' +
+                                 'This program is free software: you can redistribute it and/or modify it\n' +
+                                 'under the terms of the GNU General Public License as published by the\n' +
+                                 'Free Software Foundation, either version 3 of the License, or (at your option)\n' +
+                                 'any later version.\n\n' +
+                                 'This program is distributed in the hope that it will be useful, but\n' +
+                                 'WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY\n' +
+                                 'or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n' +
+                                 'more details.\n\n' +
+                                 'You should have received a copy of the GNU General Public License along with\n' +
+                                 'this program.  If not, see <http://www.gnu.org/licenses/>.')
+        about_dialog.set_website(app_website)
+        about_dialog.set_website_label(app_website)
+        about_dialog.set_authors(['Santiago Caamaño <https://github.com/scaamanho/>'])
+        about_dialog.set_documenters(['Santiago Caamaño <https://github.com/scaamanho/>'])
+        about_dialog.set_translator_credits('')
+        about_dialog.set_icon(GdkPixbuf.Pixbuf.new_from_file('logo.svg'))
+        about_dialog.set_logo(GdkPixbuf.Pixbuf.new_from_file('logo.svg'))
+        about_dialog.set_program_name(app_name)
+        return about_dialog
+
+    def main(self):
+        Gtk.main()
+
+
+if __name__ == "__main__":
+    ind = RestoreDesktopIndicator()
+    ind.main()
