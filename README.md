@@ -1,6 +1,5 @@
 ![Restore Desktop Indicator Logo](https://raw.githubusercontent.com/scaamanho/restore-desktop-indicator/master/logo.svg.png)
-Format: ![Alt Text]
-
+<img style="float: center;" src="https://raw.githubusercontent.com/scaamanho/restore-desktop-indicator/master/logo.svg.png">
 # restore-desktop-indicator
 Restore Unity Desktop Indicator
 
