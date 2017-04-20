@@ -1,4 +1,4 @@
-![Restore Desktop Indicator Logo](/logo.svg)
+![Restore Desktop Indicator Logo](https://raw.githubusercontent.com/scaamanho/restore-desktop-indicator/master/logo.svg)
 Format: ![Alt Text]
 
 # restore-desktop-indicator
