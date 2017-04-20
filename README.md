@@ -3,5 +3,5 @@ Restore Unity Desktop Indicator
 
 
 ## TODO
-[ ] Create Install documentation 
-[ ] Create Install Script
+* [ ] Create Install documentation 
+* [ ] Create Install Script
