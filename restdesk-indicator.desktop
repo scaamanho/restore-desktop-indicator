@@ -1,5 +1,6 @@
 [Desktop Entry]
 Type=Application
+Icon=/usr/local/bin/restore-desktop-indicator/logo.svg
 Exec=/usr/local/bin/restore-desktop-indicator/run
 Hidden=false
 NoDisplay=false
