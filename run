@@ -1,2 +1,2 @@
-# cd /home/scaamano/proyectos/ssh-indicator
+# cd /usr/local/bin/restore-desktop-indicator
 ./restdesk-indicator &

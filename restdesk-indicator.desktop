@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/local/bin/restore-desktop-indicator/run
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Restore Desktop Indicator
+Comment=Restore Unity Desktop
