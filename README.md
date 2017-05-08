@@ -15,6 +15,16 @@ setsid unity && killall nautilus
 ```
 and the efect will be the same
 
+# INSTALL
+
+```
+git clone https://github.com/scaamanho/restore-desktop-indicator.git
+cd restore-desktop-indicator
+chmod +x install.sh
+./install.sh
+```
+
+
 ## TODO
-* [ ] Create Install documentation 
-* [ ] Create Install Script
+* [x] Create Install documentation 
+* [x] Create Install Script
