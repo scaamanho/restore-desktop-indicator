@@ -1,2 +1,2 @@
-# cd /usr/local/bin/restore-desktop-indicator
+cd /usr/local/bin/restore-desktop-indicator
 ./restdesk-indicator &

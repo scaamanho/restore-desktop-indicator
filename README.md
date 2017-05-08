@@ -17,11 +17,13 @@ and the efect will be the same
 
 # INSTALL
 
+Install script will copy files to its install dir, and add run it at autostart.
+
 ```
 git clone https://github.com/scaamanho/restore-desktop-indicator.git
 cd restore-desktop-indicator
 chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
 
 
