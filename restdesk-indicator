@@ -33,9 +33,9 @@ class RestoreDesktopIndicator:
         # param1: identifier of this indicator
         # param2: name of icon. this will be searched for in the standard them
         # dirs
-        # finally, the category. We're monitoring CPUs, so HARDWARE.
+        # finally, the category of application: HARDWARE,STATUs,...
         self.ind = AppIndicator.Indicator.new(
-            "indicator-ssh",
+            "restdesk-indicator",
             app_icon,
             AppIndicator.IndicatorCategory.APPLICATION_STATUS)
 
